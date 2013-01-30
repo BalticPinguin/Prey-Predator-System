@@ -22,11 +22,11 @@ void Ppm::evaluation(){
    vector<double> mean_pred, mean_prey, abb_pred, abb_prey;
 
    for(unsigned int j=0; j<eval[0].pred.size(); j++){
-      mean_pred.push_back(eval[0].pred[j]);
-      mean_prey.push_back(eval[0].prey[j]);
+      mean_pred.push_back(double(eval[0].pred[j]));
+      mean_prey.push_back(double(eval[0].prey[j]));
       for(unsigned int i=1; i<eval.size(); i++){
-         mean_pred[j]+=eval[i].pred[j];
-         mean_prey[j]+=eval[i].prey[j];
+         mean_pred[j]+=double(eval[i].pred[j]);
+         mean_prey[j]+=double(eval[i].prey[j]);
       }
    }
    double n= double(mean_pred.size());
@@ -34,17 +34,20 @@ void Ppm::evaluation(){
       mean_pred[i]/=runs;
       mean_prey[i]/=runs;
    }
-   for(unsigned int j=0; j<mean_pred.size(); j++){
-      abb_pred.push_back(pow(eval[0].pred[j]-mean_pred[0],2));
-      abb_prey.push_back(pow(eval[0].prey[j]-mean_prey[0],2));
+   int need=mean_pred.size();
+   for( int j=0; j<need; j++){
+      abb_pred.push_back(pow(double(eval[0].pred[j]-mean_pred[j]),2));
+      abb_prey.push_back(pow(double(eval[0].prey[j]-mean_prey[j]),2));
       for(unsigned int i=1; i<eval.size(); i++){
-         abb_pred[j]+=pow(eval[i].pred[j]-mean_pred[j],2);
-         abb_prey[j]+=pow(eval[i].prey[j]-mean_prey[j],2);
+         abb_pred[j]+=pow(double(eval[i].pred[j]-mean_pred[j]),2);
+         abb_prey[j]+=pow(double(eval[i].prey[j]-mean_prey[j]),2);
       }
    }
    for(unsigned int i=0; i<n; i++){
-      abb_pred[i]/=runs;
-      abb_prey[i]/=runs;
+      abb_pred[i]/=double(need);
+      abb_pred[i]=sqrt(abb_pred[i]);
+      abb_pred[i]/=double(need);
+      abb_pred[i]=sqrt(abb_prey[i]);
    }
 
    for(unsigned int i=0; i<mean_pred.size(); i++){

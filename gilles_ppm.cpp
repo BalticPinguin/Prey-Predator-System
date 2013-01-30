@@ -22,10 +22,10 @@ void Ppm::gillespie(){
          double reaction=double(rand())/RAND_MAX;
          double foo=k1*prepre[i].prey[j];
          double bar=foo+k2*prepre[i].pred[j];
-         double foobar=bar+(k21+k12)*(prepre[i].pred[j]*prepre[i].prey[j])/90;
+         double foobar=bar+(k21+k12)*(prepre[i].pred[j]*prepre[i].prey[j]);
          double normal= foobar;
-               if(normal==0)
-                   normal=1;
+               //if(normal==0)
+                 //  normal=1;
          if (reaction<=foo/normal){ //a new  prey is born
             prepre[i].prey.push_back(prepre[i].prey[j]+1);
             prepre[i].pred.push_back(prepre[i].pred[j]);
