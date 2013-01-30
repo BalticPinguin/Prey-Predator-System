@@ -1,0 +1,2 @@
+dateiname 	Parameterliste
+ppm1		Ppm foo(80, 40, 50000, 5.6, 5.8, 0.015, 0.015, 1) // Ein moeglichst wenig schwankendes Modell
