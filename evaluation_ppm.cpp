@@ -50,7 +50,7 @@ void Ppm::evaluation(){
       abb_pred[i]=sqrt(abb_prey[i]);
    }
 
-   for(unsigned int i=0; i<mean_pred.size(); i++){
+   for(unsigned int i=0; i<mean_pred.size(); i++){ //output: evaluated data for further evaluation 
       cout<<i<<"   "<<mean_pred[i]<<"  "<<mean_prey[i]<<"  "<<abb_pred[i]<<"  "<<abb_prey[i]<<endl;
    }
 }

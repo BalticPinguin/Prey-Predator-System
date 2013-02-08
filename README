@@ -1,0 +1,13 @@
+This file contains explanation for the code
+
+The Programm "ppm" consisting out of the files :
+animal_ppm.h
+gilles_ppm.cpp 
+main_ppm.cpp
+ppm2.dat
+print_ppm.cpp
+class_ppm.cpp
+evaluation_ppm.cpp 
+ppm.h 
+and the help-data for compiling "./compile" (for compiling with gcc/g++)
+is written in C++ for calculating a prey-predatorsystem. It's algorithm is the "Gillespie-Algorithm", a algorithm for numerical calculations for the master-equation.

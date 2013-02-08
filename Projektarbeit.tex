@@ -11,7 +11,7 @@
 \usepackage{enumerate}
 \usepackage[utf8]{inputenc}
 \setcounter{secnumdepth}{-1}
-\geometry{a4paper, left=2cm, right=20mm, top=0cm, bottom=2cm}
+\geometry{a4paper, left=25mm, right=20mm, top=20mm, bottom=20mm}
 \begin{document}
 
 \begin{titlepage}
@@ -62,9 +62,10 @@ Dieses System hat lediglich die imaginären Lösungen $\lambda=\pm i\sqrt{k_2k_1
 Es l"asst sich zeigen, dass, analog dem mathematischen Pendel oder anderen oszillierenden Systemen hier eine Erhaltungsgr"o\ss e analog der Energie bzw. Hamilton-Funktion eingef"uhrt werden kann\footnote{R. Mahnke \glqq Nichtlineare Physik in Aufgaben \grqq Verlag: B.G. Teubner, Stuttgart 1994; S. 125}. Diese lautet:
 $$H=k_{21}x-k_2\ln(x)+k_{12}-k_1A\ln(y)=const$$
 
-\section{Betrachtung unter der Master-Gleichung}
-Die Master-Gleichung, die dieses System beschreibt, lässt sich formulieren als:
-$$\frac{\partial}{\partial t} P(n, m, t)=k_1\,A (n-1) P(n-1, m, t) +k_{21}(n+1)(m-1) P(n+1, m-1, t)+k_2 (m+1) P(n, m+1, t)- \left[ k_1 A n+ k_{21} n m +k_2 m \right] P(n,m,t)$$
+\section{Betrachtung mit der Master-Gleichung}
+Das betrachtete System kann mit zwei unterschiedlichen Master-Gleichungen beschrieben werden: zum einen durch die diskrete Master-Gleichung
+$$\frac{\partial}{\partial t} P(n, m, t)=k_1\,A (n-1) P(n-1, m, t) +k_{21}(n+1)(m-1) P(n+1, m-1, t)+k_2 (m+1) P(n, m+1, t)-$$ $$\left[ k_1 A n+ k_{21} n m +k_2 m \right] P(n,m,t)$$
+bei welcher $n$ die Gr"o\ss e der Beute-Population und $m$ die der R"auber-Population ist. Diese l"asst sich nun in eine kontinuierliche Gleichung "uberf"uhren, indem man von einer maximalien Gesamtpopulation $V$ ausgeht, welche nicht "uberschritten werden kann. F"ur gro\ss e Populationen ($lim_{V \rightarrow \infty}$) wird das System kontinuierlich mit den Gr"oßen $x=\frac{n}{V}$, $y=\frac{m}{V}$. Nun gilt die Master-Gleichung: %Hier entsprechend erg"anzen!!!
 Dies ist eine diskrete Master-Gleichung, welche auf Ein-Schritt-Prozesse beschränkt ist. Außerdem ist hier bereits die Vereinfachung gemacht, dass die Konstanten $k_{21}$ und $k_12$ als gleich angenommen werden.\\
 Da jedoch zun"achst beliebig viele Tiere in beiden Populationen vorkommen k"onnen, stellt diese Gleichung ein System von unendlich vielen gekoppelten Differentialgleichungen dar. 
 
@@ -84,9 +85,7 @@ Hier exemplarisch zun"achst eine Einzeltrajektorie eines m"oglichen Prozesses:
 
 \begin{figure}
 \caption{Einzeltrajektorie des R"auber-Beute-Modells (mit Gillespie-Algorithmus berechnet)}
-\includegraphics[scale=0.7]{ppm6.png}
+\includegraphics[scale=0.7]{Graphiken/ppm1_timepop.png}
 \end{figure}
 
-\section{Anhang}
-\section{Quellcode des Gillespie-Algorithmus'}
 \end{document}

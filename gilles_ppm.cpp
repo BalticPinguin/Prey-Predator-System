@@ -22,10 +22,9 @@ void Ppm::gillespie(){
          double reaction=double(rand())/RAND_MAX;
          double foo=k1*prepre[i].prey[j];
          double bar=foo+k2*prepre[i].pred[j];
-         double foobar=bar+(k21+k12)*(prepre[i].pred[j]*prepre[i].prey[j]);
+         double foobar=bar+(k21+k12)*(prepre[i].pred[j]*prepre[i].prey[j]/2);
          double normal= foobar;
-               //if(normal==0)
-                 //  normal=1;
+
          if (reaction<=foo/normal){ //a new  prey is born
             prepre[i].prey.push_back(prepre[i].prey[j]+1);
             prepre[i].pred.push_back(prepre[i].pred[j]);
@@ -37,10 +36,6 @@ void Ppm::gillespie(){
          else { //a pred ate a prey
             prepre[i].prey.push_back(prepre[i].prey[j]-1);
             prepre[i].pred.push_back(prepre[i].pred[j]+1); 
-         }
-         
-         if(prepre[i].prey[j+1]<0 || prepre[i].pred[j+1]<0){ //no populations smaller 0 possible!
-             prepre[i].time[j+1]=-1;
          }
       }
    }

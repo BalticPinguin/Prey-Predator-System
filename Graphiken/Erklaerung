@@ -1,2 +1,8 @@
 dateiname 	Parameterliste
-ppm1		Ppm foo(80, 40, 50000, 5.6, 5.8, 0.015, 0.015, 1) // Ein moeglichst wenig schwankendes Modell
+ppm1		Ppm foo(80, 40, 50000, 5.6, 5.8, 0.015, 0.015, 1);
+ppm2		Ppm foo(80, 40, 50000, 5.6, 5.8, 0.015, 0.015, 1000);
+ppm3		Ppm foo(80, 40, 50000, 5.6, 2.2, 0.025, 0.025, 900);
+ppm4		Ppm foo(80, 40, 50000, 5.6, 2.2, 0.025, 0.025, 1);
+
+
+		Ppm foo(80, 40, 50000, 5.6, 2.8, 0.07,0.07, 1000);
