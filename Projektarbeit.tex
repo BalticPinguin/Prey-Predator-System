@@ -27,7 +27,7 @@ Eine Betrachtungsweise ist ein deterministisches Modell, welches durch die Lotka
 $$\dot x=x(k_1 A-k_{12}y)=0$$
 $$\dot y=y(k_{21}x-k_2)=0$$
 beschrieben wird.
-Hierbei soll $x$ die Beute- und $y$ die Räuberpopulation darstellen. Die Parameter haben die Bedeutung
+Hierbei soll $x$ die Beute- und $y$ die Räuberpopulation darstellen; die Parameter haben die Bedeutung
 \begin{itemize}
    \item $k_1 A$ ist eine Größe, welche die Fertilität der Beutetiere beschreibt. Diese wird einerseits durch populationsspezifische Größen (Häufigkeit der Geburten, Anzahl der Kinder je Geburt etc.), welche in $k_1$ zusammengefasst sind, und andererseits durch die vorhandene Nahrungsmenge, symbolisiert mit $A$, beschrieben.
    \item $k_2$ beschreibt die Mortalität der Räuber
@@ -43,49 +43,72 @@ gezeigt.
 Ihr liegt, wie allen chemischen Prozessen, ein stochastisches Modell zu Grunde, welches mit Hilfe entsprechender Methoden analysiert werden kann. Eine Betrachtung durch die Master-Gleichung und eine Analyse mit Hilfe des Gillespie-Algorithmus' werden im folgenden vorgestellt.
 
 \section{Deterministische Betrachtung}
-Die deterministische Betrachtung des Räuber-Beute-Systems folgt, wie bereits oben erwähnt, mit den gekoppelten Differenzialgleichungen 1. Ordnung
+Die deterministische Betrachtung des Räuber-Beute-Systems folgt, wie bereits oben erwähnt, den beiden gekoppelten Differenzialgleichungen 1. Ordnung
 $$\dot x=x(k_1 A-k_{12}y)=0$$
 $$\dot y=y(k_{21}x-k_2)=0$$
 Da diese analytisch nicht lösbar sind, werden hier lediglich die stationären Lösungen, das heißt Lösungen, bei welchen sich das System nicht mehr verändert und entsprechend Langzeitlösungen sind, betrachtet.\\
-Im stationären Fall gilt entsprechend: $\dot x=\dot y=0$. Hieraus ergeben sich zwei stabile Punkte:
+Ein station"arer Fall ist eingetreten, wenn  $\dot x=\dot y=0$. Bei den Lotka-Volterra-Gleichungen ergeben sich zwei stabile Punkte: 
  $x_1=0$, $y_1=0$, $x_2=\frac{k_2}{k_{21}}$, $y_2=\frac{k_1 A}{k_{12}}$.\\
 Nun gilt es, zu untersuchen, wie stabil das System gegenüber kleinen Schwankungen an diesen Punkten ist. Dies lässt sich mit der Gleichung
-$\delta \begin{pmatrix} \dot x \\ \dot y \end{pmatrix}=J\delta \begin{pmatrix} x \\ y \end{pmatrix}$ wobei $J$ die Jakobimatrix ist:\\
+$\delta \begin{pmatrix} \dot x \\ \dot y \end{pmatrix}=J\delta \begin{pmatrix} x \\ y \end{pmatrix}$ wobei $J$ die Jakobimatrix\\
 $J=\begin{pmatrix} k_1A-k_{12}y & -k_{12}x \\ k_{21}y & k_{21}x-k_2 \end{pmatrix}$.\vspace{3mm} \\
-untersuchen.\\
+ist, untersuchen.\\
 Für $x_1$, $y_1$ gilt also:
-$\begin{vmatrix} k_1 A -\lambda & 0 \\ 0 & -k_2-\lambda \end{vmatrix}=(\lambda-k_1A)(\lambda+k_2)$.\\
-Da alle Koeffizienten positiv sind, ist das System an dem Punkt, wo beide Populationen ausgestorben sind, instabil. An dieser Lösung wird deutlich, dass in dem Modell nicht nur Geburt, sondern auch Zuwanderung aus anderen Populationen zu einer Zunahme der Anzahl der Tiere möglich ist.
-Für $x_2$, $y_2$ gilt:
 $\begin{vmatrix} -\lambda & -k_{12}\frac{k_2}{k_21} \\ k_{21}\frac{k_1 A}{k_12} & -\lambda \end{vmatrix}=\lambda^2+k_1k_2A$.\\
 Dieses System hat lediglich die imaginären Lösungen $\lambda=\pm i\sqrt{k_2k_1A}$. Rein imagiäre Lösungen beschreiben weder stabile noch instabile Systeme sondern ozillierende Lösungen (analog zu Schwingungsgleichungen in der Mechanik).\\
-Es l"asst sich zeigen, dass, analog dem mathematischen Pendel oder anderen oszillierenden Systemen hier eine Erhaltungsgr"o\ss e analog der Energie bzw. Hamilton-Funktion eingef"uhrt werden kann\footnote{R. Mahnke \glqq Nichtlineare Physik in Aufgaben \grqq Verlag: B.G. Teubner, Stuttgart 1994; S. 125}. Diese lautet:
+Es l"asst sich zeigen, dass, analog dem mathematischen Pendel oder anderen oszillierenden Systemen, hier eine Erhaltungsgr"o\ss e analog der Energie bzw. Hamilton-Funktion eingef"uhrt werden kann\footnote{R. Mahnke \glqq Nichtlineare Physik in Aufgaben \grqq Verlag: B.G. Teubner, Stuttgart 1994; S. 125}. Diese lautet:
 $$H=k_{21}x-k_2\ln(x)+k_{12}-k_1A\ln(y)=const$$
 
 \section{Betrachtung mit der Master-Gleichung}
-Das betrachtete System kann mit zwei unterschiedlichen Master-Gleichungen beschrieben werden: zum einen durch die diskrete Master-Gleichung
+Es gibt zwei unterschiedliche Master-Gleichungen, welche prinzipiell das gegebene System beschreiben: zum einen ist das die diskrete Master-Gleichung
 $$\frac{\partial}{\partial t} P(n, m, t)=k_1\,A (n-1) P(n-1, m, t) +k_{21}(n+1)(m-1) P(n+1, m-1, t)+k_2 (m+1) P(n, m+1, t)-$$ $$\left[ k_1 A n+ k_{21} n m +k_2 m \right] P(n,m,t)$$
 bei welcher $n$ die Gr"o\ss e der Beute-Population und $m$ die der R"auber-Population ist. Diese l"asst sich nun in eine kontinuierliche Gleichung "uberf"uhren, indem man von einer maximalien Gesamtpopulation $V$ ausgeht, welche nicht "uberschritten werden kann. F"ur gro\ss e Populationen ($lim_{V \rightarrow \infty}$) wird das System kontinuierlich mit den Gr"oßen $x=\frac{n}{V}$, $y=\frac{m}{V}$. Nun gilt die Master-Gleichung: %Hier entsprechend erg"anzen!!!
-Dies ist eine diskrete Master-Gleichung, welche auf Ein-Schritt-Prozesse beschränkt ist. Außerdem ist hier bereits die Vereinfachung gemacht, dass die Konstanten $k_{21}$ und $k_12$ als gleich angenommen werden.\\
-Da jedoch zun"achst beliebig viele Tiere in beiden Populationen vorkommen k"onnen, stellt diese Gleichung ein System von unendlich vielen gekoppelten Differentialgleichungen dar. 
+
+Die Diskrete Master-Gleichung hat gegen"uber der kontinuierlichen jedoch zwei Vorteile: Zum einen ist sie deutlich anschaulicher, da die Gr"oßen alle jeweils beobachtbar sind und zum anderen, weil hier nur Einschrittprozesse betrachtet werden, was im kontinuierlichen Fall nicht mehr m"oglich ist, jedoch in diesem System durchaus Sinn ergibt. \\
+Allerdings ist auch die Master-Gleichung in diesem System nicht gut l"osbar, da jede Gleichung drei Wahrscheinlichkeiten miteinander koppelt. Hinzu kommt, dass das System zun"achst aus unendlich vielen Gleichungen besteht. F"uhrt man hier, analog zu oben, eine Maximale Populationsgr"oße ein, so kann man die Master-Gleichung zwar auf endlich viele Gleichungen beschr"anken, jedoch wird das System nicht handlicher, da bereits bei einer Maximalpopulation von 3 Tieren 10 gekoppelte Differentialgleichungen zu l"osen sind.\\
+Dieses Problem soll im Folgenden durch einen Algorithmus umgangen werden, welcher die Master-Gleichung numerisch l"ost.
 
 \section{Berechnungen mit dem Gillespie-Algorithmus}
-Der Gillespie-Algorithmus untersucht stochastische Prozesse mit einem % experimentellen ////////////////////////////////////
-Ansatz: Es werden eine Anzahl von Durchl"aufen des Prozesses mit Hilfe von Zufallsfunktionen berechnet und anschließend "uber diese gemittelt. Wurden genügend Durchläufe gemacht und sind die verwendeten Zufallsalgorithmen gut, so entsprechen die mit dem Gillespie-Algorithmus gewonnenen Ergebnisse denen der deterministischen Lösung. Das genaue Vorgehen beim Gillespie-Algorithmus lautet wie folgt\footnote{http://www.co-nan.eu/pdf/df2.pdf (28.01.2013) }:
+Der Gillespie-Algorithmus untersucht stochastische Prozesse mit einem statistischen Ansatz: Es werden eine Anzahl von Durchl"aufen des Prozesses mit Hilfe von Zufallsfunktionen berechnet und anschließend "uber diese gemittelt. Wurden genügend Durchläufe gemacht und sind die verwendeten Zufallsalgorithmen gut, so entsprechen die mit dem Gillespie-Algorithmus gewonnenen Ergebnisse denen der deterministischen Lösung. Das genaue Vorgehen beim Gillespie-Algorithmus lautet wie folgt\footnote{http://www.co-nan.eu/pdf/df2.pdf (28.01.2013) }:
 \begin{enumerate}
-   \item Initialisiere zun"achst alle Startwerte (Anfangsbedingungen, Konstanten etc).
-   \item Generiere zwei Zufallszahlen $\tau$, $\rho$
-   \item Nun wird das System erweitert: Aus den oben generierten Zufallszahlen wird ein Zeitschritt ermittelt, bei welchem der Prozess durchgef"uhrt wird, und aus der zweiten Zahl wird bestimmt, welcher der m"ogleichen Prozesse durchgef"uhrt wird. Nun m"ussen die jeweiligen Wahrscheinlichkeiten an die ver"anderten Zahlen angepasst werden.
-   \item Ist die zu Beginn festgelegte Simulationsdauer noch nicht erreicht, beginne wieder bei Schritt 2.
+   \item Initialisiere zun"achst alle Startwerte (Anfangsbedingungen, Konstanten etc). In meiner Implementierung wird dieser Schritt septarat bereits im constructor des Programms vorgenommen.
+   \item Generiere zwei Zufallszahlen $\tau$, $\rho$, wobei $\tau$ eine exponentiell verteilte Zahl sein soll: Kleine Zahlen sollen also sehr häufig vorkommen, größere immer seltener (wird zum Beispiel, wie in meiner Implementierung, durch eine gleich-verteilte Zufallsvariable erzeugt, welche einer e-Funktion übergeben wird.). $\rho$ soll eine Zahl zwischen 0 und 1 sein. Die Werte von $\rho$ sind gleichverteilt (entsprechende Algorithmen bietet jede höhere Programmiersprache).\\
+    In meiner Implementierung kommen keine Zeitsprünge größer als 1 Zeiteinheit vor:\\
+   
+         $\tau$: \begin{verbatim} double changetime=exp(-double(rand())/double(rand()))\end{verbatim}\\
+
+         $\rho$: \begin{verbatim} double reaction=double(rand())/RAND_MAX;\end{verbatim}\\
+
+   \item Nun wird ein Reaktionsschritt durchgeführt: Die Zeit wird um die Variable $\tau$ weiter gesetzt (Zeitpunkt, zu dem die Reaktion stattfindet) und $\rho$ wird auf die möglichen Reaktionsschritte abgebildet. \\
+   Da bei dem Räuber-Beute-Modell die Wahrscheinlichkeit von den Populationsgrößen abhängt, wird hier jeweils die Reaktionskonstante ($k_1$, $k_2$, $k_{21}$) mit der entsprechenden Populationsgröße addiert und durch die Gesamtgröße geteilt. In meiner Implementierung:
+        \begin{verbatim}
+         double foo=k1*prepre[i].prey[j];
+         double bar=foo+k2*prepre[i].pred[j];
+         double foobar=bar+(k21+k12)*prepre[i].pred[j]*prepre[i].prey[j]/2;
+        \end{verbatim}
+     Nun kann durch Vergleich der Größen einer der Prozesse durchgeführt werden:
+        \begin{verbatim}
+         if (reaction<=foo/foobar){ //a new  prey is born
+         else if(reaction<=bar/foobar){ // a pred died
+         else { //a pred ate a prey
+        \end{verbatim}
+   \item Ist die zu Beginn festgelegte Simulationsdauer noch nicht erreicht, beginne wieder bei Schritt 2. Dabei muss darauf geachtet werden, dass die Wahrscheinlichkeiten beim nächsten Reaktionsschritt neu verteilt werden müssen.
 \end{enumerate}
 
-Mit Hilfe dieses Algorithmus' l"asst sich das R"auber-Beute-Modell nun sehr gut beschreiben. In einer Implementierung des Algorithmus' ergaben sich folgende Abl"aufe:
+ Mit diesem Algorithmus lässt sich nun das Modell gut beschreiben und auswerten. Meine Implementierung, welche unter github %/////// hier muss sie noch hin!!!
+einzusehen und herunterzuladen ist, gibt eine Datenreihe aus, welche zu fest definierten Zeitpunkten die Populationesgrößen ausgibt. 
+Einige der Simulationen seien hier gezeigt und die entsprechenden Ergebnisse diskutiert.
 
-Hier exemplarisch zun"achst eine Einzeltrajektorie eines m"oglichen Prozesses:
+\newpage}
+\begin{minipage}
+% hier Platz für 3 Bilder usw... 
+\end{minipage}
+Erläuterung und Auswertung
 
-\begin{figure}
-\caption{Einzeltrajektorie des R"auber-Beute-Modells (mit Gillespie-Algorithmus berechnet)}
-\includegraphics[scale=0.7]{Graphiken/ppm1_timepop.png}
-\end{figure}
+\newpage}
+\begin{minipage}
+% hier Platz für 3 Bilder usw... 
+\end{minipage}
+Erläuterung und Auswertung
 
 \end{document}

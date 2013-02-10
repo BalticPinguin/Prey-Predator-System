@@ -14,7 +14,7 @@ void Ppm::evaluation(){
             eval[i].time.push_back(prepre[i].time[k]);
             eval[i].prey.push_back(prepre[i].prey[k]);
             eval[i].pred.push_back(prepre[i].pred[k]);
-            j-=7.9;
+            j-=5.0;
          }
       }
    } //now all values are in eval... is has a fixed size (depending only on reactiontime and the steps j

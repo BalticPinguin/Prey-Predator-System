@@ -4,10 +4,45 @@ The Programm "ppm" consisting out of the files :
 animal_ppm.h
 gilles_ppm.cpp 
 main_ppm.cpp
-ppm2.dat
 print_ppm.cpp
 class_ppm.cpp
 evaluation_ppm.cpp 
 ppm.h 
 and the help-data for compiling "./compile" (for compiling with gcc/g++)
 is written in C++ for calculating a prey-predatorsystem. It's algorithm is the "Gillespie-Algorithm", a algorithm for numerical calculations for the master-equation.
+
+The knolegde of Gillespies' algorithm is %vorausgesetzt !!!!!!!!!!!!!!!!!!!!!!!!!!
+in the folowing. Now I will describe main options in this program.
+
+
+===OPTIONS===
+Most opotions of changing parameters can be done in the main-function. 
+The constructor of the "Ppm"-element "foo" takes (like explained in the comment the parameters:
+   prey (int)		it means the starting population-size of the preys 
+   predator (int)	it means the starting population-size of the predators 
+   time (double)	descibes, how long the simulation is done. Be careful with calculation-time.
+   konst1 (float)	it is a constant for births in preys population. It is used in "gilles_ppm,cpp".
+   konst2 (float)	it is a constant for deaths in predators population.
+   konst21 konst12,	these constants both descibe the rate of eaten (died) preys and with that the birth-rate of predators. In the implementation both constants mean exactly the same (their average is taken). You can expand the programm to have different birth- and die-rates.
+   run (int) 		it means the times of calculating the whole model. The greater run is, the more serious are the results of the program. Be careful with calculation-time!
+
+Further options are more hidden in th program, because they are not that important for the simulation. For example, there are two print-functions, that are not used by default. They are implemented for testing the code, but can be useful, if you want to look, hoy exactly the system develops. 
+
+Also you can change the timesteps of evaluation by changing the variable j in line 17 (j-=5.0).
+
+Other changes are more close to the code and change the simulation itself, like, for example, changes in "gilles_ppm.cpp".
+
+===OUTPUT=== 
+The program's output ist (by default) a quite long list of five different numbers. Their meaning ist the following:
+1. row: the numer of current time-steps/uotputs. It just counts from 1 to X in each output.
+2. row: There you see the size of average predator-population at that time-step (average is made by all runs, that are done).
+3. row: is is the average size of prey-population in this step.
+4. row: has the meaning of abberation of the predator-population at that time-step
+5. row: hat the meaning of abberation of the prey-population at that time-step
+
+with this output you should be able to evaluate the calculations statistically. Other outputs can be easyly added by the print-functions, added to the program.
+
+the main-object handled in this program is a vector of type "Animal" (see declaration in "animal_ppm.h"). It has the structure:
+                               /- vector time (diese drei vectoren beinhalten eine Laufzeit
+animal ->  prepre (datavector) ---- vector prey
+                               \_ vector pred
