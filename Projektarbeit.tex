@@ -1,5 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath}
+\usepackage{capt-of}
 \usepackage{gnuplottex}
 \usepackage{geometry}
 \usepackage{wrapfig}
@@ -15,11 +16,12 @@
 \begin{document}
 
 \begin{titlepage}
-\title{Projektarbeit: Das Räuber-Beute-Modell \\ \small{pray-predator-model}\\ \includegraphics[scale=0.1]{Bilder/HaseLuxStat.png}}
+\title{\textbf{\Huge{Projektarbeit: Das Räuber-Beute-Modell}} \\ \large{pray-predator-model}\\ \includegraphics[scale=0.18]{Bilder/title.png}}
 \author{Tobias Möhle \\ 211204256}
 \date{28.01.2013}
 \maketitle
 \end{titlepage}
+\tableofcontents
 
 \section{Einleitung}
 Das Räuber-Beute-Modell ist ein Modell aus der Ökologie, welches das kleinste "okologische System beschreibt: zwei Populationen; eine Räuber- und eine Beutepopulation. Wie sich diese Populationen gegenseitig beeinflussen, bzw. wie sich dieser Einfluss beschreiben lässt, soll im Folgenden betrachtet werden.
@@ -56,29 +58,61 @@ ist, untersuchen.\\
 Für $x_1$, $y_1$ gilt also:
 $\begin{vmatrix} -\lambda & -k_{12}\frac{k_2}{k_21} \\ k_{21}\frac{k_1 A}{k_12} & -\lambda \end{vmatrix}=\lambda^2+k_1k_2A$.\\
 Dieses System hat lediglich die imaginären Lösungen $\lambda=\pm i\sqrt{k_2k_1A}$. Rein imagiäre Lösungen beschreiben weder stabile noch instabile Systeme sondern ozillierende Lösungen (analog zu Schwingungsgleichungen in der Mechanik).\\
-Es l"asst sich zeigen, dass, analog dem mathematischen Pendel oder anderen oszillierenden Systemen, hier eine Erhaltungsgr"o\ss e analog der Energie bzw. Hamilton-Funktion eingef"uhrt werden kann\footnote{R. Mahnke \glqq Nichtlineare Physik in Aufgaben \grqq Verlag: B.G. Teubner, Stuttgart 1994; S. 125}. Diese lautet:
-$$H=k_{21}x-k_2\ln(x)+k_{12}-k_1A\ln(y)=const$$
+Dabei verschwindet diese Oszillation, wenn gilt:\\
+Andere L"osungen oszlillieren entsprechend um diesen stabilen Punkt. 
 
+\begin{minipage}[b]{0.6\textwidth}
+Es l"asst sich weiter zeigen, dass, analog dem mathematischen Pendel oder anderen oszillierenden Systemen, hier eine Erhaltungsgr"o\ss e analog der Energie bzw. Hamilton-Funktion eingef"uhrt werden kann\footnote{R. Mahnke \glqq Nichtlineare Physik in Aufgaben \grqq Verlag: B.G. Teubner, Stuttgart 1994; S. 125}. Diese lautet:
+$$H=k_{21}\,x-k_2\,\ln(x)+k_{12}-k_1\,A\,\ln(y)=const$$
+Im Phasenraum ergeben sich damit nebenstehend dargestellte Trajektorien. Dabei entsprechen die unterschiedlichen Ringe unterschiedlichen Werten f"ur $H$.
+\end{minipage}
+\begin{minipage}[b]{0.4\textwidth}
+\includegraphics[width=\textwidth]{Bilder/Hamdyn.jpg}
+\captionof{figure}{Dynamik des R"auber-Beute-Systems im Phasenraum}
+\end{minipage}
+
+\newpage
 \section{Betrachtung mit der Master-Gleichung}
 Es gibt zwei unterschiedliche Master-Gleichungen, welche prinzipiell das gegebene System beschreiben: zum einen ist das die diskrete Master-Gleichung
 $$\frac{\partial}{\partial t} P(n, m, t)=k_1\,A (n-1) P(n-1, m, t) +k_{21}(n+1)(m-1) P(n+1, m-1, t)+k_2 (m+1) P(n, m+1, t)-$$ $$\left[ k_1 A n+ k_{21} n m +k_2 m \right] P(n,m,t)$$
-bei welcher $n$ die Gr"o\ss e der Beute-Population und $m$ die der R"auber-Population ist. Diese l"asst sich nun in eine kontinuierliche Gleichung "uberf"uhren, indem man von einer maximalien Gesamtpopulation $V$ ausgeht, welche nicht "uberschritten werden kann. F"ur gro\ss e Populationen ($lim_{V \rightarrow \infty}$) wird das System kontinuierlich mit den Gr"oßen $x=\frac{n}{V}$, $y=\frac{m}{V}$. Nun gilt die Master-Gleichung: %Hier entsprechend erg"anzen!!!
-
-Die Diskrete Master-Gleichung hat gegen"uber der kontinuierlichen jedoch zwei Vorteile: Zum einen ist sie deutlich anschaulicher, da die Gr"oßen alle jeweils beobachtbar sind und zum anderen, weil hier nur Einschrittprozesse betrachtet werden, was im kontinuierlichen Fall nicht mehr m"oglich ist, jedoch in diesem System durchaus Sinn ergibt. \\
-Allerdings ist auch die Master-Gleichung in diesem System nicht gut l"osbar, da jede Gleichung drei Wahrscheinlichkeiten miteinander koppelt. Hinzu kommt, dass das System zun"achst aus unendlich vielen Gleichungen besteht. F"uhrt man hier, analog zu oben, eine Maximale Populationsgr"oße ein, so kann man die Master-Gleichung zwar auf endlich viele Gleichungen beschr"anken, jedoch wird das System nicht handlicher, da bereits bei einer Maximalpopulation von 3 Tieren 10 gekoppelte Differentialgleichungen zu l"osen sind.\\
+bei welcher $n$ die Gr"o\ss e der Beute-Population und $m$ die der R"auber-Population ist. Diese ist jedoch nicht analytisch lösbar, da es hier zunächst unendlich viele miteinander gekoppelte Gleichungen gibt. Dieses Problem ist zwar durch die Einführung einer maximalen Populationsanzahl durchaus zu beheben, jedoch wird das System nicht handlicher, da bereits bei einer Maximalpopulation von 3 Tieren 10 gekoppelte Differentialgleichungen zu l"osen sind.\\
+Diese Gleichung lässt sich nun jedoch in eine kontinuierliche Gleichung "uberf"uhren, indem man von einer maximalien Gesamtpopulation $V$ ausgeht, welche nicht "uberschritten werden kann. Damit ändern sich die die zu grunde liegenden Reaktionsgleichungen zu\footnote{vergleiche auch http://ww.co-nan.eu/pdf/df2.pdf (am 21.12.2012)}
+$$x+A +e \xrightarrow{k_1} 2x $$
+$$y \xrightarrow[k_{21}]{k_{12}} e $$
+$$x+y \xrightarrow{k_2} y+y $$
+dabei ist $e$ die Anzahl "freier" Plätze in dem System. Damit muss sich auch die erste Übergangsgröße verändern. Aus $k_1 A n$ wird nun $k_1 A n e$. Für den Kontinuitätsübergang werden nun noch die Größen  $x=\frac{n}{V}$, $y=\frac{m}{V}$ eingeführt.Entsprechend gilt nun für die Wahrscheinlichkeiten:\\
+$P(n,m,t)=P(xV,yV,t)\rightarrow p(x,y,t)\,V$. Wir erhalten also eine Wahrscheinlichkeitsdichte. Auch die Übergangsraten ww.co-nan.eu/pdf/df2.pdf
+müssen nun angepasst werden. Dabei formen wir um:\\
+\begin{itemize}
+   \item $k_1A (n-1)(e+1)=k_1 A V^2 \frac{n-1}{V} \frac{V-(n-1)-m}{V}$ wegen des Zusammenhanges $V=m+n+e$. Nun folgt nach Definition mit $w_1=k_1 A V^2$: $k_1A (n-1)(e+1)=w_1x'(1-x'-y)$. Analog folgen die weiteren Größen:
+   \item $k_2 (m+1)=w_2 \,y'$ mit $w_2=k_2*V$
+   \item $k_{21} (m-1)(n+1)=w_3 \,x'\, y'$ mit $w_3=k_{21}V^2=w_3$.
+\end{itemize}
+Damit folgt die Master-Gleichung:
+$$\frac{\partial}{\partial t} p(x,y,t)=w_1x'(1-x'-y) p(x',y,t) +w_2 y'p(x,y',t)+w_3 x'y'p(x',y',t)$$
+$$-\left( w_1x(1-x-y)+w_2y+w_3 x y\right) p(x,y,t)$$
+Diese Gleichung soll nun auf die Form
+$$\frac{\partial}{\partial t} p(x,t)= \int dx'w(x,x')p(x',t)-\int dx' w(x',x)p(x,t)$$
+in der die Master-Gleichung bekannt ist, gebracht werden. Durch Koeffizientenvergleich erhält man für die nun zweidimensionalen Übergangsraten:\\
+$w(x,y,x',y')=w_1\,x'(1-y'-x') \delta(x'-\frac{n-1}{V})\delta(y'-y)+ w_2 y'\delta(x'-x)\delta(y'-\frac{m+1}{V}) +w_3 x'y'\delta(x'-\frac{n+1}{V})\delta(y'-\frac{m-1}{V})$\\
+$w(x',y',x,y)=\left\{ w_1x(1-x-y)+w_2 y+w_3 x\,y \right\} \delta(x'-x)\delta(y'-y) $\\
+Damit erhalten wir schließlich die kontinuierliche Master-Gleichung:
+$$\frac{\partial}{\partial t} p(x,y,t)=\int dx' w(x,y,x',y')=w_1\,x'(1-y'-x') \delta(x'-\frac{n-1}{V})\delta(y'-y)$$
+$$+ w_2 y'\delta(x'-x)\delta(y'-\frac{m+1}{V}) +w_3 x'y'\delta(x'-\frac{n+1}{V})\delta(y'-\frac{m-1}{V})$$
+$$ - \int dx' w(x',y',x,y)=\left\{ w_1x(1-x-y)+w_2 y+w_3 x\,y \right\} \delta(x'-x)\delta(y'-y) $$
+Die Diskrete Master-Gleichung hat gegen"uber der kontinuierlichen jedoch zwei Vorteile: im Wesentlichen ist sie deutlich anschaulicher, da statt mit Dichten und Anteilen mit \glqq realen \grqq Größen gerechnet wird. Aber auch ihre Handhabung ist deutlich leichter, da dort keine Distributionen oder ähnliches vorkommt.
+Hinzu kommt, dass die Master-Gleichung auch im kontinuierlichen Fall nicht l"osbar ist, da jede Gleichung drei Wahrscheinlichkeiten miteinander koppelt.
 Dieses Problem soll im Folgenden durch einen Algorithmus umgangen werden, welcher die Master-Gleichung numerisch l"ost.
 
+\newpage
 \section{Berechnungen mit dem Gillespie-Algorithmus}
 Der Gillespie-Algorithmus untersucht stochastische Prozesse mit einem statistischen Ansatz: Es werden eine Anzahl von Durchl"aufen des Prozesses mit Hilfe von Zufallsfunktionen berechnet und anschließend "uber diese gemittelt. Wurden genügend Durchläufe gemacht und sind die verwendeten Zufallsalgorithmen gut, so entsprechen die mit dem Gillespie-Algorithmus gewonnenen Ergebnisse denen der deterministischen Lösung. Das genaue Vorgehen beim Gillespie-Algorithmus lautet wie folgt\footnote{http://www.co-nan.eu/pdf/df2.pdf (28.01.2013) }:
 \begin{enumerate}
-   \item Initialisiere zun"achst alle Startwerte (Anfangsbedingungen, Konstanten etc). In meiner Implementierung wird dieser Schritt septarat bereits im constructor des Programms vorgenommen.
+   \item Initialisiere zun"achst alle Startwerte (Anfangsbedingungen, Konstanten etc). In meiner Implementierung wird dieser Schritt separat bereits im constructor des Programms vorgenommen.
    \item Generiere zwei Zufallszahlen $\tau$, $\rho$, wobei $\tau$ eine exponentiell verteilte Zahl sein soll: Kleine Zahlen sollen also sehr häufig vorkommen, größere immer seltener (wird zum Beispiel, wie in meiner Implementierung, durch eine gleich-verteilte Zufallsvariable erzeugt, welche einer e-Funktion übergeben wird.). $\rho$ soll eine Zahl zwischen 0 und 1 sein. Die Werte von $\rho$ sind gleichverteilt (entsprechende Algorithmen bietet jede höhere Programmiersprache).\\
     In meiner Implementierung kommen keine Zeitsprünge größer als 1 Zeiteinheit vor:\\
-   
-         $\tau$: \begin{verbatim} double changetime=exp(-double(rand())/double(rand()))\end{verbatim}\\
-
-         $\rho$: \begin{verbatim} double reaction=double(rand())/RAND_MAX;\end{verbatim}\\
-
+          \begin{verbatim} double changetime=exp(-double(rand())/double(rand()))
+         double reaction=double(rand())/RAND_MAX;\end{verbatim}
    \item Nun wird ein Reaktionsschritt durchgeführt: Die Zeit wird um die Variable $\tau$ weiter gesetzt (Zeitpunkt, zu dem die Reaktion stattfindet) und $\rho$ wird auf die möglichen Reaktionsschritte abgebildet. \\
    Da bei dem Räuber-Beute-Modell die Wahrscheinlichkeit von den Populationsgrößen abhängt, wird hier jeweils die Reaktionskonstante ($k_1$, $k_2$, $k_{21}$) mit der entsprechenden Populationsgröße addiert und durch die Gesamtgröße geteilt. In meiner Implementierung:
         \begin{verbatim}
@@ -92,23 +126,84 @@ Der Gillespie-Algorithmus untersucht stochastische Prozesse mit einem statistisc
          else if(reaction<=bar/foobar){ // a pred died
          else { //a pred ate a prey
         \end{verbatim}
-   \item Ist die zu Beginn festgelegte Simulationsdauer noch nicht erreicht, beginne wieder bei Schritt 2. Dabei muss darauf geachtet werden, dass die Wahrscheinlichkeiten beim nächsten Reaktionsschritt neu verteilt werden müssen.
+   \item Ist die zu Beginn festgelegte Simulationsdauer noch nicht erreicht, beginne wieder bei Schritt 2. Dabei muss darauf geachtet werden, dass die Wahrscheinlichkeiten beim nächsten Reaktionsschritt anders verteilt sind.
 \end{enumerate}
+Die gesamte Implementierung des Algorithmus' kann auf der Seite
 
- Mit diesem Algorithmus lässt sich nun das Modell gut beschreiben und auswerten. Meine Implementierung, welche unter github %/////// hier muss sie noch hin!!!
-einzusehen und herunterzuladen ist, gibt eine Datenreihe aus, welche zu fest definierten Zeitpunkten die Populationesgrößen ausgibt. 
-Einige der Simulationen seien hier gezeigt und die entsprechenden Ergebnisse diskutiert.
+ \textbf{https://github.com/BalticPinguin/Prey-Predator-System.git} \\
+eingesehen und heruntergeladen werden.
 
-\newpage}
-\begin{minipage}
-% hier Platz für 3 Bilder usw... 
+Mit Hilfe dieses Algorithmus' l"asst sich das R"auber-Beute-Modell nun gut beschreiben. Allerdings stellt sich die Suche geeigneter Parameter als deutlich schwerer dar, als man es zunächst erwarten würde, da die Zusammenhänge, wie man bereits anhand der Graphiken erahnen kann, nicht linear sind. Stirbt beispielsweise die Räuber-Population bei den Simulationen stets aus, hilft es nicht, ihr Sterberate einfach zu senken; vielmehr hilft ihnen eine höhere Geburtenzahl bei den Beutetieren, da sie sich so besser erholen und damit die Räuber-Population stärken.
+\begin{minipage}[b]{0.6\textwidth} 
+\includegraphics[width=\textwidth]{Graphiken/ppm1timepop.png}
+\captionof{figure}{zeitliche Entwicklung der Populationen (Einzeltrajektorie)}
 \end{minipage}
-Erläuterung und Auswertung
-
-\newpage}
-\begin{minipage}
-% hier Platz für 3 Bilder usw... 
+\begin{minipage}[b]{0.4\textwidth}
+Die nebenstehenden Graphiken zeigen eine mit dem Algorithmus berechnete Einzeltrajektorie; einmal als zeitlicher Verlauf (oben) und einmal im \glqq Phasenraum\grqq , welcher von den Populationgrößen aufgespannt wird. In diesem sieht man also die Kopplung der beiden Größen untereinander. 
+Auch zeigt sich hier, abgesehen von dem spiralförmigen Verlauf, dass der berechnete Prozess offensichtlich dem oben betrachteten deterministischen Modell ähnlich ist, da die Prozesse in der gleichen leicht dreieckigen Form ablaufen.\\
+Allerdings ist die hier abgebildete Trajektorie für die in diesem Prozess genutzten Parameter eher untypisch. Mittelt man hier über viele Prozesse, so zeigt sich, dass meist die Räuber-Population mehr oder weniger bald ausstirbt. Dadurch, dass es sich hier um eine Einzeltrajektorie handelt, sieht man hier aber sehr gut die stochastischen Schwankungen, denen der Zufallsprozess unterliegt.
 \end{minipage}
-Erläuterung und Auswertung
+\begin{minipage}[b]{0.6\textwidth}
+\includegraphics[width=\textwidth]{Graphiken/ppm1hampop.png}
+\captionof{figure}{Entwicklung der beiden Populationen im Phasenraum (Einzeltrajektorie)}
+\end{minipage}
 
+\begin{minipage}[b]{0.6\textwidth}
+\includegraphics[width=\textwidth]{Graphiken/ppm42pop.png}
+\captionof{figure}{zeitliche Populationsentwicklung, wenn R"auber-Population ausstirbt}
+\end{minipage}
+\begin{minipage}[b]{0.4\textwidth}
+Die hier abgebildeten Graphiken (oben zeitlicher Verlauf, unten Trajektorie im Phasenraum) entstanden aus einer Mittlung über 1000 Simulationsdurchläufe. Dabei wurden die Parameter hier so gewählt, dass sie die in der deterministischen Betrachtung oben gefundenen Bedingungen
+$x=\frac{k_2}{k_{21}}$, $y=\frac{k_1\,A}{k_{12}}$\\
+gen"ugen. Offensichtlich unterscheidet sich dieses Modell von dem deterministischen qunatitativ recht stark. Die Parameter haben offensichtlich in diesem Modell doch eine etwas andere Bedeutung als in dem deterministischen Modell. Allerdings scheinen sie in ihrer Proportionalit"at denen oben zu entsprechen. So sind auch bei stabileren Durchl"aufen die Konstanten $k_{21}$ und $k_{12}$ um einige Gr"oßenodnungen kleiner als die anderen beiden. 
+\end{minipage}
+\begin{minipage}[b]{0.6\textwidth}
+\includegraphics[width=\textwidth]{Graphiken/ppm42ham.png}
+\captionof{figure}{obige Entwicklung im Phasenraum}
+\end{minipage}
+
+\begin{minipage}[b]{0.58\textwidth}
+\includegraphics[width=1.0\textwidth]{Graphiken/ppm45pop.png}
+\captionof{figure}{gemittelte Trajektorie in einem fast stabilen Zustand}
+\end{minipage}
+\begin{minipage}[b]{0.39\textwidth}
+Die nebenstehenden Bilder zeigen ein allgeimeines Problem dieser Auswertungsmethode. Im Wesentlichen sind die Parameter offensichtlich so gew"ahlt, dass die R"auber-Population gegen Ende h"auft ausstirbt, da die Beute entsprechend ansteigt. Viel wesentlicher ist aber, dass, wie auch beim ersten Beispiel zu sehen ist, das System hier offensichtlich ged"ampft ist. Da die D"ampfung bei vielfach gemittelten Ergebnissen deutlich st"arker ist und, wie das unterste Bild zeigt, die Standardabweichung mit der Zeit exponentiell zunimmt, k"onnen hier zu der ohnehin anscheinend stattfindenden D"ampfung zwei Gr"unde vermutet werden: Erstens kann es sein, dass bei vielen der Simulationen eine der Populationen ausgestorben ist; die mittlere Populationszahl jedoch ann"ahernd konstant ist (was die sehr glatte Funktion der Standardabweichung von der Zeit erkl"art). Ein zweiter Gr"und k"onnte sein, dass die einzelnen Simulationen unterschiedlich schnell oszillierten und sich so gegenseitig aufheben.
+\end{minipage}
+\begin{minipage}[b]{0.5\textwidth}
+\includegraphics[width=1.0\textwidth]{Graphiken/ppm45ham.png}
+\captionof{figure}{Trajektorie im Phasenraum}
+\end{minipage}
+\begin{minipage}[b]{0.48\textwidth}
+\includegraphics[width=1.0\textwidth]{Graphiken/ppm45abb.png}
+\captionof{figure}{zeitliche Entwicklung der Standardabweichung im fast stabilen Zustand}
+\end{minipage}
+
+\begin{minipage}[b]{0.58\textwidth}
+\includegraphics[width=1.0\textwidth]{Graphiken/ppm226ham.png}
+\captionof{figure}{Populationsentwicklung bei anderer Parameterwahl}
+\end{minipage}
+\begin{minipage}[b]{0.4\textwidth}
+Ein sehr interessanter Effekt zeigt sich, wenn man ganz andere Parameter eingibt als die oben genutzten. Offensichtlich enth"alt die Gillespie-Simulationen Bereiche, die ebenfalls recht spabil ablaufen, jedoch anders verlaufen als die oben betrachteten und aus anderen Modellen bekannten Modelle.\\
+Die Untersuchung solcher Systeme und Kl"arung der Frage, woher solch ein unregelm"aßiges Verhalten kommt, sowie ob dieses Verhalten die Grenze des Modells markiert oder auch in anderen Modellen zu finden oder gar mit der Realit"at "ubereinstimmen kann, w"urde den Rahmen dieser Arbeit sprengen.
+\end{minipage}
+\begin{minipage}[b]{0.6\textwidth}
+\includegraphics[width=1.0\textwidth]{Graphiken/ppm226pop.png}
+\captionof{figure}{die obige Populationsentwicklung im Phasenraum: Das besondere Verhalten wird deutlicher}
+\end{minipage}
+
+\section{Auswertung}
+Das R"auber-Beute-Modell ist offensichtlich ein sehr ergibiges Problem, welches sich, wie die obigen Betrachtungen zeigen, auf verschiedene Weise beschreiben und untersuchen l"asst. Dabei hat jede Untersuchungsweise ihre Vor- und Nachteile; aber es konnte auch gezeigt werden, dass die beiden hier untersuchten Modelle "ahnliche Ergebnisse liefern.
+
+\section{Abbildungsverzeichnis}
+
+\begin{itemize}
+   \item Quellen Titelbild: http://iqa.evergreenps.org/science/biology/predator-prey\_files/pred-prey.jpg (13.02.2013), http://www.globalchange.umich.edu/globalchange1/current/lectures/predation/tmp26.gif (04.01.2013)
+   \item Abbildung 1: R. Mahnke \glqq Nichtlineare Physik in Aufgaben \grqq Verlag: B.G. Teubner, Stuttgart 1994; S. 125
+   \item Abbildung 2-3: Parameter: 80, 40, 6500, 4.8, 2.0, 0.01, 0,01, 1
+   \item Abbildung 4-5: Parameter: 80, 40, 1700, 5.6, 2.8, 0.07, 0.07, 1000
+   \item Abbildung 6-8: Parameter: 80, 60, 50000, 11.2, 8.1, 0.011, 0.011, 1000
+   \item Abbildung 9-10: Parameter: 8000, 80, 50000, 17.3, 16.4, 0.013, 0.013, 1000
+\end{itemize}
+\textit{Hinweis zu der Parameterangabe: Reihenfolge der angegebenen Zahlen:\\
+ Beutepopulation, R"auber-Population (jew. Startwerte) , zu durchlaufende Zeiteinheiten, $k_1\,A$, $k_2$, $k_{21}$, $k_{12}$, Anzahl der berechneten Simulationen}
 \end{document}
