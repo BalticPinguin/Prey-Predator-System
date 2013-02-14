@@ -11,8 +11,7 @@ ppm.h
 and the help-data for compiling "./compile" (for compiling with gcc/g++)
 is written in C++ for calculating a prey-predatorsystem. It's algorithm is the "Gillespie-Algorithm", a algorithm for numerical calculations for the master-equation.
 
-The knolegde of Gillespies' algorithm is %vorausgesetzt !!!!!!!!!!!!!!!!!!!!!!!!!!
-in the folowing. Now I will describe main options in this program.
+The knolegde of Gillespies' algorithm is preconditioned in the folowing. Now I will describe main options in this program.
 
 
 ===OPTIONS===
