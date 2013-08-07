@@ -17,7 +17,11 @@
 
 \begin{titlepage}
 \title{\textbf{\Huge{Projektarbeit: Das Räuber-Beute-Modell}} \\ \large{pray-predator-model}\\ \includegraphics[scale=0.18]{Bilder/title.png}}
+<<<<<<< HEAD
 \author{Hubert Weißmann}
+=======
+\author{Tobias Möhle \\ 211204256}
+>>>>>>> 3e11b17a22f17134c5776c45facead6eab419466
 \maketitle
 \end{titlepage}
 \tableofcontents
@@ -89,12 +93,11 @@ $$y \xrightarrow{k_2} e $$
 $$x+y \xrightarrow[k_{21}]{k_{12}} y+y $$
 dabei ist $e$ die Anzahl \glqq freier\grqq\ Plätze in dem System. Damit muss sich auch die erste Übergangsgröße verändern. Aus $k_1 A n$ wird nun $k_1 A n e$. Für den Kontinuitätsübergang werden nun noch die Größen  $x=\frac{n}{V}$, $y=\frac{m}{V}$ eingeführt.
 Aber auch hier ist keine L"osung m"oglich, weshalb ein anderer L"osungsansatz ben"otigt wird. Im Folgenden soll dies mit Hilfe des Gillespie-Algorithmus' geschehen, welcher einen epirischen Ansatz verfolgt und das Problem numerisch l"osen kann.
-
 \newpage
 \section{Berechnungen mit dem Gillespie-Algorithmus}
 Der Gillespie-Algorithmus untersucht stochastische Prozesse mit einem statistischen Ansatz: Es werden eine Anzahl von Durchl"aufen des Prozesses mit Hilfe von Zufallsfunktionen berechnet und anschließend "uber diese gemittelt. Wurden genügend Durchläufe gemacht und sind die verwendeten Zufallsalgorithmen gut, so entsprechen die mit dem Gillespie-Algorithmus gewonnenen Ergebnisse denen der analytische Lösung. Das genaue Vorgehen beim Gillespie-Algorithmus lautet wie folgt\footnote{http://www.co-nan.eu/pdf/df2.pdf (28.01.2013) }:
 \begin{enumerate}
-  \item Initialisiere zun"achst alle Startwerte (Anfangsbedingungen, Konstanten etc). In meiner Implementierung wird dieser Schritt separat bereits im constructor des Programms vorgenommen.
+   \item Initialisiere zun"achst alle Startwerte (Anfangsbedingungen, Konstanten etc). In meiner Implementierung wird dieser Schritt separat bereits im constructor des Programms vorgenommen.
    \item Generiere zwei Zufallszahlen $\tau$, $\rho$, wobei $\tau$ eine exponentiell verteilte Zahl sein soll: Kleine Zahlen sollen also sehr häufig vorkommen, größere immer seltener (wird zum Beispiel, wie in meiner Implementierung, durch eine gleich-verteilte Zufallsvariable erzeugt, welche einer e-Funktion übergeben wird.). $\rho$ soll eine Zahl zwischen 0 und 1 sein. Die Werte von $\rho$ sind gleichverteilt (entsprechende Algorithmen bietet jede höhere Programmiersprache).\\
     In meiner Implementierung kommen keine Zeitsprünge größer als 1 Zeiteinheit vor:
          \begin{verbatim}
@@ -158,6 +161,7 @@ gen"ugen. Offensichtlich unterscheidet sich dieses Modell von dem deterministisc
 \end{minipage}
 \begin{minipage}[b]{0.39\textwidth}
 Wie die nebenstehenden Bilder zeigen, hat nicht nur die gewählte Auswertungsmethode, welche zu sehr großen Fehlern führt (welcher jedoch hier außerdem durch einen mittlerweile behobenen Fehler im Programm kommt), sondern auch zu keinen schönen Zyklen führt. Dies liegt vor allem an den Anfangsbedingungen\footnote{nature.berkeley.edu/biocon/BC Class Notes/ 73-77 Predator Models.pdf (am 07.08.2013)}, welche in vielen Fällen keine stabilen Zyklen erzeugen. Im Wesentlichen sind die Parameter offensichtlich so gew"ahlt, dass die R"auber-Population gegen Ende h"aufig ausstirbt, da die Beute-Population entsprechend ansteigt. Die Dämpfung wird jedoch, wie auch die Fehlerkurve nahelegt, vermutlich auch durch die Mittelung deutlich verstärkt.
+
 \end{minipage}
 \begin{minipage}[b]{0.48\textwidth}
 \includegraphics[width=1.0\textwidth]{Graphiken/ppm45ham.png}

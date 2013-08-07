@@ -51,6 +51,21 @@ void Ppm::evaluation(){
       cout<<i<<"   "<<mean_pred[i]<<"  "<<mean_prey[i]<<"  "<<abb_pred[i]<<"  "<<abb_prey[i]<<endl;
    }
 } /* 
+=======
+   for(unsigned int i=0; i<n; i++){
+      abb_pred[i]/=double(need);
+      abb_pred[i]=sqrt(abb_pred[i]);
+      abb_pred[i]/=double(need);
+      abb_pred[i]=sqrt(abb_prey[i]);
+   }
+
+   for(unsigned int i=0; i<mean_pred.size(); i++){ //output: evaluated data for further evaluation 
+      cout<<i<<"   "<<mean_pred[i]<<"  "<<mean_prey[i]<<"  "<<abb_pred[i]<<"  "<<abb_prey[i]<<endl;
+   }
+}
+
+/* 
+>>>>>>> 3e11b17a22f17134c5776c45facead6eab419466
 Daten in der klasse:
 
      float  k1, k2, k12, k21;

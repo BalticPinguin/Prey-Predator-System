@@ -12,7 +12,7 @@ void Ppm::gillespie(){
           prepre[i].pred.push_back(prepre[0].pred[0]);
       }
 
-      for(int j=1; prepre[i].time[j]>0; j++){ //stops iteration, if time is out...
+      for(int j=0; prepre[i].time[j]>0; j++){ //stops iteration, if time is out...
 
              //first: look for time for reaction-step
          double changetime=exp(-double(rand())/double(rand()));
